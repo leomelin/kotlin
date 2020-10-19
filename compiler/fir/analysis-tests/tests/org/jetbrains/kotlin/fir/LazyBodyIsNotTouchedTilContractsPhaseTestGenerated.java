@@ -2044,6 +2044,11 @@ public class LazyBodyIsNotTouchedTilContractsPhaseTestGenerated extends Abstract
             runTest("compiler/fir/analysis-tests/testData/resolve/problems/objectDerivedFromInnerClass.kt");
         }
 
+        @TestMetadata("overriddenLateinit.kt")
+        public void testOverriddenLateinit() throws Exception {
+            runTest("compiler/fir/analysis-tests/testData/resolve/problems/overriddenLateinit.kt");
+        }
+
         @TestMetadata("safeCallInvoke.kt")
         public void testSafeCallInvoke() throws Exception {
             runTest("compiler/fir/analysis-tests/testData/resolve/problems/safeCallInvoke.kt");
