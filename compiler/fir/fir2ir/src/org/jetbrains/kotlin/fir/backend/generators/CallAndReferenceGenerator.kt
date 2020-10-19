@@ -95,9 +95,7 @@ class CallAndReferenceGenerator(
                             // Since it's used as a field reference, we need a bogus property as a placeholder.
                             val firSymbol =
                                 (callableReferenceAccess.calleeReference as FirResolvedNamedReference).resolvedSymbol as FirFieldSymbol
-                            declarationStorage.getOrCreateIrProperty(
-                                firSymbol.fir.toProperty(), referencedField.parent
-                            ).symbol
+                            declarationStorage.getOrCreateIrPropertyByPureField(firSymbol.fir, referencedField.parent).symbol
                         }
                     IrPropertyReferenceImpl(
                         startOffset, endOffset, type,
@@ -147,21 +145,6 @@ class CallAndReferenceGenerator(
             }
         }.applyTypeArguments(callableReferenceAccess).applyReceivers(callableReferenceAccess, explicitReceiverExpression)
     }
-
-    private fun FirField.toProperty(): FirProperty =
-        buildProperty {
-            source = this@toProperty.source
-            session = this@toProperty.session
-            origin = this@toProperty.origin
-            returnTypeRef = this@toProperty.returnTypeRef
-            name = this@toProperty.name
-            isVar = this@toProperty.isVar
-            getter = this@toProperty.getter
-            setter = this@toProperty.setter
-            symbol = FirPropertySymbol(this@toProperty.symbol.callableId)
-            isLocal = false
-            status = this@toProperty.status
-        }
 
     private fun FirQualifiedAccess.tryConvertToSamConstructorCall(type: IrType): IrTypeOperatorCall? {
         val calleeReference = calleeReference as? FirResolvedNamedReference ?: return null
