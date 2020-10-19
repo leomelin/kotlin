@@ -10,3 +10,9 @@ object Factory {
         f: Some
     ): String = "Omega"
 }
+
+interface Delegate {
+    fun bar()
+}
+
+data class DataClass(val delegate: Delegate): Delegate by delegate
