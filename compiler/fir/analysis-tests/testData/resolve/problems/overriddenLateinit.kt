@@ -3,7 +3,7 @@ open class Base {
 }
 
 class Derived : Base() {
-    <!INAPPLICABLE_LATEINIT_MODIFIER!>override var origin: String
+    override var origin: String
         get() = super.origin
-        set(value) {}<!>
+        set(value) {}
 }

@@ -138,6 +138,7 @@ class FirStatusResolver(
         } ?: resolveModality(declaration, containingClass)
         if (overriddenStatuses.isNotEmpty()) {
             for (modifier in FirDeclarationStatusImpl.Modifier.values()) {
+                if (modifier == FirDeclarationStatusImpl.Modifier.LATEINIT) continue
                 status[modifier] = status[modifier] || overriddenStatuses.fold(false) { acc, overriddenStatus ->
                     acc || overriddenStatus[modifier]
                 }

@@ -14,7 +14,7 @@ FILE: overriddenLateinit.kt
             super<R|Base|>()
         }
 
-        public final override lateinit var origin: R|kotlin/String|
+        public final override var origin: R|kotlin/String|
             public get(): R|kotlin/String| {
                 ^ this@R|/Derived|.super<R|Base|>.R|/Base.origin|
             }
