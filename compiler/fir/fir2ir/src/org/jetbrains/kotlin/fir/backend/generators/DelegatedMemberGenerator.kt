@@ -53,7 +53,7 @@ internal class DelegatedMemberGenerator(
             if (isJavaDefault(unwrapped)) {
                 return@processAllFunctions
             }
-            if (firSubClass is FirRegularClass && firSubClass.isData && functionSymbol.callableId.classId == StandardClassIds.Any) {
+            if (firSubClass is FirRegularClass && firSubClass.isData && unwrapped.symbol.callableId.classId == StandardClassIds.Any) {
                 return@processAllFunctions
             }
 

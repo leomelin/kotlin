@@ -11,8 +11,12 @@ object Factory {
     ): String = "Omega"
 }
 
-interface Delegate {
+interface Base
+
+interface Delegate : Base {
     fun bar()
 }
 
-data class DataClass(val delegate: Delegate): Delegate by delegate
+interface Derived : Delegate
+
+data class DataClass(val delegate: Delegate): Derived, Delegate by delegate
