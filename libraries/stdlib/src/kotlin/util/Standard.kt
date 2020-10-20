@@ -85,6 +85,22 @@ public inline fun <T> T.apply(block: T.() -> Unit): T {
 }
 
 /**
+ * Calls the specified function [block] with `this` value as its receiver and returns `this` value when condition is met. 
+ *
+ * For detailed usage information see the documentation for [scope functions](https://kotlinlang.org/docs/reference/scope-functions.html#applyWhen).
+ */
+@kotlin.internal.InlineOnly
+public inline fun <T> T.applyWhen(condition: Boolean, block: T.() -> Unit): T {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    if (condition) {
+        block()
+    }
+    return this
+}
+
+/**
  * Calls the specified function [block] with `this` value as its argument and returns `this` value.
  *
  * For detailed usage information see the documentation for [scope functions](https://kotlinlang.org/docs/reference/scope-functions.html#also).
